@@ -25,27 +25,27 @@
 				</ul>
 			</div>
 		</nav> -->
-		<main class="grid content">
+		<main class="grid--large content">
 			<h1>{{ title }}</h1>
 			<ul class="column--45 gutter-after box-shadow">
 				<h3>Food</h3>
 				<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
 					<h4>{{ item.name }}</h4>
 					<p>{{ item.description }}</p>
-					<span>${{ item.price }}</span>
+					<p class="highlighted">${{ item.price }}</p>
 					<button class="btn--cart" type="button" name="button">ADD TO CART</button>
 				</li>
 			</ul>
 			<ul class="column--45 gutter-after box-shadow">
 				<h3>Drinks</h3>
-				<li class="box-shadow margin-bottom" v-for="item in items">
+				<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
 					<h4>{{ item.name }}</h4>
 					<p>{{ item.description }}</p>
-					<span>${{ item.price }}</span>
-					<button class="btn--cart" type="button" name="button">ADD TO CART</button>
+					<p class="highlighted">${{ item.price }}</p>
+					<button @click="addItem()" class="btn--cart" type="button" name="button">ADD TO CART</button>
 				</li>
 			</ul>
-
+			<button class="btn--cart" @click="emptyCart()" type="button" name="button">EMPTY CART</button>
 
 			<!-- <p><example>Head over to <code>/js/app.js</code> to edit your JavaScript and <code>/sass/app/_layout.scss</code> to start editing your CSS!</example></p>
 

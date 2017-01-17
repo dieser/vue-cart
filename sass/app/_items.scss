@@ -1,8 +1,16 @@
 // add to card button;
 .btn--cart {
 	display: block;
+	margin: 0 auto;	
 	padding: 10px 30px;
 	font-weight: bold;
 	color: $rtc;
 	background-color: $hbc;
+	border: 2px solid transparent;
+	transition-duration: 0.2s;
+	&:hover {
+		color: $hbc;
+		background-color: $rtc;
+		border: 2px solid $hbc;
+	}
 }

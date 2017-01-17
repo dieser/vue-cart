@@ -2,7 +2,7 @@ const app = new Vue({
 	el: 'main',
 
 	data: {
-		// Application data here.
+		order: [],
 		items: [
 			{
 				name: 'item 1',
@@ -35,8 +35,12 @@ const app = new Vue({
 	},
 
 	methods: {
-		// Application methods here.
-		// ...
+		addItem() {
+		},
+		emptyCart() {
+			this.order = [];
+			console.log('emptied cart');
+		}
 	},
 
 	mounted() {

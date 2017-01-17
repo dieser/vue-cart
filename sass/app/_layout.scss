@@ -1,0 +1,53 @@
+
+// default element styling
+
+.grid {
+	@include grid();
+	padding: 30px 20px;
+	text-align: center;
+}
+.grid--large {
+	@include grid(1200px);
+}
+
+// default list styling
+ul {
+	display: inline-block;
+	list-style-type: none;
+	text-align: left;
+	vertical-align: top;
+	margin: 5px 10px 15px;
+	padding: 20px 30px;
+	li {
+		font-size: 120%;
+		padding: 20px;
+		h4 {
+			font-size: 130%;
+			text-transform: uppercase;
+		}
+		p {
+			color: $stc;
+		}
+		span {
+			font-size: 150%;
+			color: $htc;
+			font-weight: bold;
+		}
+	}
+}
+//box shadow for blocks or elements level;
+.box-shadow {
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+//adds bottom margin to element
+.margin-bottom {
+	margin-bottom: 15px;
+}
+
+a {
+	text-transform: uppercase;
+	color: $rtc;
+	&:hover {
+		color: $htc;
+	}
+}

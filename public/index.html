@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Cart</title>
+
+		<link rel="stylesheet" href="/css/vendor.bundle.css">
+		<link rel="stylesheet" href="/css/components.bundle.css">
+		<link rel="stylesheet" href="/css/app.css">
+	</head>
+	<body>
+		<nav class="nav--left">
+			<ul>
+				<li>category 1</li>
+				<li>category 2</li>
+				<li>category 3</li>
+			</ul>
+		</nav>
+		<!-- <nav>
+			<div class="grid">
+				<ul>
+					<a href="#"><li>Home</li></a>
+				</ul>
+			</div>
+		</nav> -->
+		<main class="grid content">
+			<h1>{{ title }}</h1>
+			<ul class="column--45 gutter-after box-shadow">
+				<h3>Food</h3>
+				<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
+					<h4>{{ item.name }}</h4>
+					<p>{{ item.description }}</p>
+					<span>${{ item.price }}</span>
+					<button class="btn--cart" type="button" name="button">ADD TO CART</button>
+				</li>
+			</ul>
+			<ul class="column--45 gutter-after box-shadow">
+				<h3>Drinks</h3>
+				<li class="box-shadow margin-bottom" v-for="item in items">
+					<h4>{{ item.name }}</h4>
+					<p>{{ item.description }}</p>
+					<span>${{ item.price }}</span>
+					<button class="btn--cart" type="button" name="button">ADD TO CART</button>
+				</li>
+			</ul>
+
+
+			<!-- <p><example>Head over to <code>/js/app.js</code> to edit your JavaScript and <code>/sass/app/_layout.scss</code> to start editing your CSS!</example></p>
+
+			<p><checkbox v-model="checkbox"></checkbox> This is a checkbox</p>
+
+			<modal @click-out="checkbox = !checkbox" :visible="checkbox">
+				<p>Hello!</p>
+				<p><checkbox v-model="checkbox"></checkbox> Open?</p>
+			</modal> -->
+		</main>
+
+		<script src="/js/vendor.bundle.js"></script>
+		<script src="/js/components.bundle.js"></script>
+		<script src="/js/app.js"></script>
+	</body>
+</html>

@@ -63,36 +63,38 @@
 						<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
 					</li>
 				</ul>
-				<button class="btn--cart" @click="emptyCart()" type="button" name="button">EMPTY CART</button>
-
-				<div class="cart">
-					<div v-show="cart === false" class="cart--closed" @click="openCart()">
-						<h4>Cart</h4><i></i>
-					</div>
-					<div v-show="cart === true" class="cart--open">
-						<button @click="closeCart()" type="button" name="button"> close cart</button>
-						<ul class="">
-							<h3>Cart</h3>
-							<li class="box-shadow margin-bottom" v-for="item in order">
-								<img :src="item.img" alt=" product image">
-								<h4>{{ item.name }}</h4>
-								<p>{{ item.description }}</p>
-								<p class="highlighted">${{ item.price }}</p>
-								<button @click="removeItem(item)" class="btn--cart" type="button" name="button">Remove Item</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- <p><example>Head over to <code>/js/app.js</code> to edit your JavaScript and <code>/sass/app/_layout.scss</code> to start editing your CSS!</example></p>
-
-				<p><checkbox v-model="checkbox"></checkbox> This is a checkbox</p>
-
-				<modal @click-out="checkbox = !checkbox" :visible="checkbox">
-					<p>Hello!</p>
-					<p><checkbox v-model="checkbox"></checkbox> Open?</p>
-				</modal> -->
 			</main>
+
+			<div class="cart">
+				<div v-show="cart.open === false" class="cart--closed" @click="openCart()">
+					<h4>Cart</h4><i></i>
+				</div>
+				<div v-show="cart.open === true" class="cart--open">
+					<button @click="closeCart()" type="button" name="button"> close cart</button>
+
+					<ul class="">
+						<h3>Cart</h3>
+						<div v-if="order.length === 0"class="cart-empty">
+								{{ cart.empty }}
+						</div>
+						<li class="box-shadow margin-bottom" v-for="item in order">
+							<img :src="item.img" alt=" product image">
+							<h4>{{ item.name }}</h4>
+							<p>{{ item.description }}</p>
+							<p class="highlighted">${{ item.price }}</p>
+							<button @click="removeItem(item)" class="btn--cart" type="button" name="button">Remove Item</button>
+						</li>
+					</ul>
+					<button v-if="order.length > 0" class="btn--cart" @click="emptyCart()" type="button" name="button">EMPTY CART</button>
+					<p v-if="order.length > 0"><checkbox v-model="checkbox">Empty Cart?</checkbox>Empty Cart?</p>
+
+					<modal @click-out="checkbox = !checkbox" :visible="checkbox">
+						<div class="warning">!</div>
+						<p><checkbox @click="emptyCart()" v-model="checkbox"></checkbox></p>
+						<button class="btn--cart" type="button" name="button">Remove all items from cart?</button>
+					</modal>
+				</div>
+			</div>
 
 		</div>
 

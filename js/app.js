@@ -39,7 +39,10 @@ const app = new Vue({
 		title: 'Order Here',
 		checkbox: false,
 		alert: false,
-		cart: false,
+		cart: {
+			open: false,
+			empty: "You currently have no items in your cart"
+		},
 		nav : {
 			open: false,
 			content: ">"
@@ -65,11 +68,11 @@ const app = new Vue({
 		},
 		//functions for opening and closing cart dropdown from right side nav
 		openCart() {
-			this.cart = true;
+			this.cart.open = true;
 			console.log('opened cart')
 		},
 		closeCart() {
-			this.cart = false;
+			this.cart.open = false;
 			console.log('opened cart')
 		},
 		openNav() {

@@ -28,7 +28,6 @@ body {
 	margin-bottom: 15px;
 }
 //random styling for little top nav logo
-
 a {
 	border-radius: 40px;
 	background: $htc;
@@ -41,4 +40,18 @@ a {
 		background: $rtc;
 		border: 2px solid $htc;
 	}
+}
+
+//modal warning
+.warning {
+	font-size: 400%;
+	font-weight: bold;
+	padding: 20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	margin: 0 auto 30px;
+	color: $rtc;
+	background: $htc;
+
 }

@@ -1,0 +1,59 @@
+
+
+//styling for carts go here.
+.cart--closed {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 250px;
+	padding: 10px 20px;
+	text-align: center;
+	color: $rtc;
+	background: $hbc;
+}
+.cart--open {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 400px;
+	padding: 10px;
+	text-align: center;
+	color: $hbc;
+	background: $pbc;
+	vertical-align: top;
+	border-radius: 35px 0 0 35px;
+    box-shadow: -2px 3px 15px rgba(0, 0, 0, 0.15);
+
+	li {
+		display: inline-block;
+		margin: 0 auto;
+		img {
+			max-width: 50%;
+		}
+		h4,p,.highlighted {
+			padding: 0 0 5px;
+		}
+		h4 {
+			font-size: 120%;
+			text-transform: uppercase;
+		}
+		p {
+			color: $stc;
+			font-size: 100%;
+		}
+		.highlighted {
+			font-size: 140%;
+			color: $htc;
+			font-weight: bold;
+		}
+		.btn--cart {
+			background: $htc;
+			font-size: 100%;
+			padding: 5px 15px;
+			&:hover {
+				background: $pbc;
+			}
+		}
+	}
+
+}

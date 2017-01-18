@@ -2,8 +2,9 @@
 
 // uncomment if top nav is needed
 nav {
-	position: fixed;
+	// position: fixed;
 	width: 100%;
+	padding: 15px;
 	z-index: 2;
 	color: $rtc;
 	background-color: $hbc;
@@ -11,11 +12,10 @@ nav {
 		padding: 0;
 		margin: 0 auto;
 
-		ul {
-			margin-top: 0;
-			li {
-				display:inline-block;
-			}
+		a {
+			padding: 10px;
+			text-decoration: none;
+			font-size: 130%;
 		}
 	}
 }
@@ -26,12 +26,21 @@ nav {
 
 // left nav submenu
 .nav--left {
-	position: fixed;
-	width: 15%;
+	position: absolute;
+    width: 15%;
+    left: 0%;
+    background: #333;
+    height: 100%;
+    z-index: 10;
+}
+.nav-closed {
+	padding: 5px 15px 5px 20px;
+	position: absolute;
+	left: -3px;
+	margin-top: 10px;
+	color: $rtc;
 	background: #333;
-	height: 100%;
-	z-index: 10;
-	ul {
-
-	}
+	border-radius: 0 7px 7px 0;
+	font-size: 250%;
+	font-weight: bold;
 }

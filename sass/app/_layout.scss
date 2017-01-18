@@ -14,54 +14,31 @@
 		text-align: center;
 	}
 }
-
-
-
-// default list styling
-ul {
-	display: inline-block;
-	list-style-type: none;
-	text-align: left;
-	vertical-align: top;
-	margin: 5px 10px 15px;
-	padding: 20px 30px;
-	h3 {
-		margin-bottom: 15px;
-	}
-	li {
-		font-size: 120%;
-		padding: 20px;
-		text-align: center;
-		h4,p,.highlighted {
-			padding: 5px 0 5px;
-		}
-		h4 {
-			font-size: 120%;
-			text-transform: uppercase;
-		}
-		p {
-			color: $stc;
-		}
-		.highlighted {
-			font-size: 150%;
-			color: $htc;
-			font-weight: bold;
-		}
-	}
+body {
+	position: relative;
 }
+
+
 //box shadow for blocks or elements level;
 .box-shadow {
-	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+	box-shadow: -1px 1px 9px rgba(0,0,0,0.25);
 }
 //adds bottom margin to element
 .margin-bottom {
 	margin-bottom: 15px;
 }
+//random styling for little top nav logo
 
 a {
+	border-radius: 40px;
+	background: $htc;
 	text-transform: uppercase;
 	color: $rtc;
+	transition-duration: 0.5s;
+	border: 2px solid transparent;
 	&:hover {
 		color: $htc;
+		background: $rtc;
+		border: 2px solid $htc;
 	}
 }

@@ -10,55 +10,95 @@
 		<link rel="stylesheet" href="/css/components.bundle.css">
 		<link rel="stylesheet" href="/css/app.css">
 	</head>
+
+
 	<body>
-		<nav class="nav--left">
-			<ul>
-				<li>category 1</li>
-				<li>category 2</li>
-				<li>category 3</li>
-			</ul>
-		</nav>
-		<!-- <nav>
-			<div class="grid">
-				<ul>
-					<a href="#"><li>Home</li></a>
-				</ul>
+		<div id="app">
+			<header>
+				<nav>
+					<div class="grid">
+							<a href="#">:D</a>
+					</div>
+				</nav>
+			</header>
+			<nav v-show="nav.open === true" class="nav--left">
+				<div class="nav-open">
+					<i @click="closeNav()" >X</i>
+					<ul>
+						<li>category 1</li>
+						<li>category 2</li>
+						<li>category 3</li>
+					</ul>
+				</div>
+			</nav>
+			<div @click="openNav()" class="nav-closed">
+				<p v-text="nav.content"></p>
 			</div>
-		</nav> -->
-		<main class="grid--large content">
-			<h1>{{ title }}</h1>
-			<ul class="column--45 gutter-after box-shadow">
-				<h3>Food</h3>
-				<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
-					<h4>{{ item.name }}</h4>
-					<p>{{ item.description }}</p>
-					<p class="highlighted">${{ item.price }}</p>
-					<button class="btn--cart" type="button" name="button">ADD TO CART</button>
-				</li>
-			</ul>
-			<ul class="column--45 gutter-after box-shadow">
-				<h3>Drinks</h3>
-				<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
-					<h4>{{ item.name }}</h4>
-					<p>{{ item.description }}</p>
-					<p class="highlighted">${{ item.price }}</p>
-					<button @click="addItem()" class="btn--cart" type="button" name="button">ADD TO CART</button>
-				</li>
-			</ul>
-			<button class="btn--cart" @click="emptyCart()" type="button" name="button">EMPTY CART</button>
+			<!-- <nav>
+				<div class="grid">
+					<ul>
+						<a href="#"><li>Home</li></a>
+					</ul>
+				</div>
+			</nav> -->
+			<main class="grid--large content">
+				<h1>{{ title }}</h1>
+				<ul class="column--45 gutter-after box-shadow">
+					<h3>Food</h3>
+					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items" :key="item.id">
+						<img :src="item.img" alt="">
+						<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
+						<p>{{ item.description }}</p>
 
-			<!-- <p><example>Head over to <code>/js/app.js</code> to edit your JavaScript and <code>/sass/app/_layout.scss</code> to start editing your CSS!</example></p>
+						<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
+					</li>
+				</ul>
+				<ul class="column--45 gutter-after box-shadow">
+					<h3>Drinks</h3>
+					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
+						<img :src="item.img" alt="product image">
+						<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
+						<p>{{ item.description }}</p>
 
-			<p><checkbox v-model="checkbox"></checkbox> This is a checkbox</p>
+						<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
+					</li>
+				</ul>
+				<button class="btn--cart" @click="emptyCart()" type="button" name="button">EMPTY CART</button>
 
-			<modal @click-out="checkbox = !checkbox" :visible="checkbox">
-				<p>Hello!</p>
-				<p><checkbox v-model="checkbox"></checkbox> Open?</p>
-			</modal> -->
-		</main>
+				<div class="cart">
+					<div v-show="cart === false" class="cart--closed" @click="openCart()">
+						<h4>Cart</h4><i></i>
+					</div>
+					<div v-show="cart === true" class="cart--open">
+						<button @click="closeCart()" type="button" name="button"> close cart</button>
+						<ul class="">
+							<h3>Cart</h3>
+							<li class="box-shadow margin-bottom" v-for="item in order">
+								<img :src="item.img" alt=" product image">
+								<h4>{{ item.name }}</h4>
+								<p>{{ item.description }}</p>
+								<p class="highlighted">${{ item.price }}</p>
+								<button @click="removeItem(item)" class="btn--cart" type="button" name="button">Remove Item</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- <p><example>Head over to <code>/js/app.js</code> to edit your JavaScript and <code>/sass/app/_layout.scss</code> to start editing your CSS!</example></p>
+
+				<p><checkbox v-model="checkbox"></checkbox> This is a checkbox</p>
+
+				<modal @click-out="checkbox = !checkbox" :visible="checkbox">
+					<p>Hello!</p>
+					<p><checkbox v-model="checkbox"></checkbox> Open?</p>
+				</modal> -->
+			</main>
+
+		</div>
 
 		<script src="/js/vendor.bundle.js"></script>
 		<script src="/js/components.bundle.js"></script>
 		<script src="/js/app.js"></script>
 	</body>
+
 </html>

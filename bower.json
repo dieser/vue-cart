@@ -7,5 +7,9 @@
   "dependencies": {
     "vue": "^2.0.3",
     "vue-resource": "^1.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0"
   }
 }

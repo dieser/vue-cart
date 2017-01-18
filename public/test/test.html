@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Tests</title>
+
+		<link rel="stylesheet" href="/vendor/mocha/mocha.css">
+	</head>
+	<body>
+		<div id="mocha"></div>
+
+		<script src="/vendor/mocha/mocha.js"></script>
+		<script src="/vendor/chai/chai.js"></script>
+		<script src="/vendor/vue/dist/vue.min.js"></script>
+		<script src="/js/app.js"></script>
+
+		<script>
+			mocha.setup('bdd');
+
+			describe('Cart', () => {
+				it('Should contain no items at the beginning of the application.', () => {
+					chai.assert.equal(app.order.length, 0);
+				});
+
+				describe('#addItem', () => {
+					it('Should increase by one item when adding a new item to the order.', () => {
+						let prevLength = app.order.length;
+
+						app.addItem('test');
+
+						chai.assert.equal(app.order.length, prevLength + 1);
+					});
+
+					it('Should throw an error when being called with no arguments.');
+					it('Should throw an error when an item that is not known within the items array is added to the cart.');
+				});
+
+				describe('#removeItem()', () => {
+					it('Should decrease by one item when removing an item.', () => {
+						let prevLength = app.order.length;
+
+						app.removeItem(0);
+
+						chai.assert.equal(app.order.length, prevLength - 1);
+					});
+
+					it('Should throw an error when being called with no arguments.');
+					it('Should throw an error when the provided index is out of bounds.');
+				});
+
+				describe('#emptyCart', () => {
+					it('Should reduce the total items to zero.', () => {
+						app.emptyCart();
+
+						chai.assert.equal(app.order.length, 0);
+					});
+				});
+			});
+
+			mocha.run();
+		</script>
+	</body>
+</html>

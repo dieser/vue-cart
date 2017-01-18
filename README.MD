@@ -1,6 +1,4 @@
-# FrontendSDK.
-
-A tiny kit to kickstart frontend development with Gulp.
+# Cart.
 
 ## Features.
 

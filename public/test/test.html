@@ -45,7 +45,9 @@
 					});
 
 					it('Should throw an error when being called with no arguments.');
-					it('Should throw an error when the provided index is out of bounds.');
+					it('Should throw an error when the provided index is out of bounds.', () => {
+					    chai.expect(app.removeItem.bind(app, 1000)).to.throw(Error);
+					});
 				});
 
 				describe('#emptyCart', () => {

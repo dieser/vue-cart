@@ -12,6 +12,14 @@
 	background: $hbc;
 	border-radius: 35px 0 0 35px;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 1;
+  transform: translateX(420px);
+}
+
 .cart--open {
 	position: absolute;
 	right: 0;
@@ -24,6 +32,7 @@
 	vertical-align: top;
 	border-radius: 35px 0 0 35px;
     box-shadow: -2px 3px 15px rgba(0, 0, 0, 0.15);
+	transition: all 550ms cubic-bezier(.75,.49,.31,1);
 
 	li {
 		display: inline-block;

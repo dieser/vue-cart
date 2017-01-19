@@ -39,6 +39,7 @@ const app = new Vue({
 		title: 'Order Here',
 		checkbox: false,
 		alert: false,
+		errors: [],
 		cart: {
 			open: false,
 			empty: "You currently have no items in your cart"
@@ -57,23 +58,32 @@ const app = new Vue({
 		},
 
 		//removes item from cart
+		// removeItem(item) {
+		// 	this.order.splice(item, 1);
+		// 	console.log('removed ' + item.name);
+		// },
 		removeItem(item) {
-			this.order.splice(item, 1);
-			console.log('removed ' + item.name);
+		    if (item >= 0 && item < this.order.length) {
+		        this.order.splice(item, 1);
+		        console.log('removed ' + item.name);
+		    } else {
+		        throw new Error('Item "' + item + '" does not exist.');
+		    }
 		},
 		//empties all items from the cart
 		emptyCart() {
 			this.order = [];
+			this.checkbox = false;
 			console.log('emptied cart');
 		},
 		//functions for opening and closing cart dropdown from right side nav
 		openCart() {
 			this.cart.open = true;
-			console.log('opened cart')
+			console.log('opened cart');
 		},
 		closeCart() {
 			this.cart.open = false;
-			console.log('opened cart')
+			console.log('opened cart');
 		},
 		openNav() {
 			// var content = document.querySelector('.content');

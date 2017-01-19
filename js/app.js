@@ -10,7 +10,11 @@ const app = new Vue({
 				name: 'item 1',
 				description: 'Pellentesque sit amet bibendum est, nec vehicula turpis.',
 				price: 2,
-				available: true
+				category: {
+					id: 1,
+					name: 'food'
+				},
+				available: true,
 			},
 			{
 				id: 2,
@@ -18,6 +22,10 @@ const app = new Vue({
 				name: 'item 2',
 				description: 'Sed imperdiet velit sem, non feugiat orci volutpat sed. Donec egestas augue quis rhoncus tincidunt.',
 				price: 7,
+				category: {
+					id: 1,
+					name: 'food'
+				},
 				available: true
 			},
 			{
@@ -26,20 +34,42 @@ const app = new Vue({
 				name: 'item 3',
 				description: 'Praesent tincidunt tellus eget felis ultrices rutrum. Praesent blandit nibh faucibus lectus pulvinar egestas.',
 				price: 3,
+				category: {
+					id: 2,
+					name: 'drink'
+				},
 				available: true
 			},
 			{
 				id: 4,
+				img: 'http://lorempixel.com/250/201/food/',
 				name: 'item 4',
 				description: 'eget felis ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.',
 				price: 8,
+				category: {
+					id: 2,
+					name: 'drink'
+				},
 				available: false
+			},
+			{
+				id: 5,
+				img: 'http://lorempixel.com/250/201/food/',
+				name: 'item 5',
+				description: 'ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.',
+				price: 12,
+				category: {
+					id: 2,
+					name: 'drink'
+				},
+				available: true
 			}
 		],
 		title: 'Order Here',
 		checkbox: false,
 		alert: false,
 		errors: [],
+		currentProducts: [],
 		cart: {
 			open: false,
 			empty: "You currently have no items in your cart"
@@ -51,6 +81,23 @@ const app = new Vue({
 	},
 
 	methods: {
+		//sorts into categories
+		getCategories() {
+			let categories = [];
+
+			this.items.forEach(item => {
+				let found = false;
+				categories.forEach(category => {
+					if ( item.category.id === category.id) {
+						found = true;
+					}
+				});
+				if(!found) {
+					categories.push(item.category);
+				}
+			})
+			return categories;
+		},
 		// adds item to cart
 		addItem(item) {
 			this.order.push(item);
@@ -63,11 +110,15 @@ const app = new Vue({
 		// 	console.log('removed ' + item.name);
 		// },
 		removeItem(item) {
+			console.log(this.order.length, item);
 		    if (item >= 0 && item < this.order.length) {
+
 		        this.order.splice(item, 1);
-		        console.log('removed ' + item.name);
+		        // console.log('removed ' + item.name);
 		    } else {
 		        throw new Error('Item "' + item + '" does not exist.');
+				var message = 'Sorry something has gone wrong. Please empty the cart';
+				this.errors.push(message);
 		    }
 		},
 		//empties all items from the cart
@@ -95,6 +146,13 @@ const app = new Vue({
 			this.nav.open = false;
 			this.nav.content = ">";
 			console.log('nav closed');
+		},
+		onError() {
+			if (this.errors !== []) {
+				alert(this.errors);
+			} else {
+				console.log(okeh);
+			}
 		}
 	},
 

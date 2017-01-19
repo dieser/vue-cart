@@ -39,7 +39,7 @@ nav {
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for <2.1.8 */ {
-  transform: translateX(-250px);
+  transform: translateX(-300px);
   opacity: 1;
 }
 
@@ -47,7 +47,7 @@ nav {
 
 .nav--left {
 	position: absolute;
-    width: 15%;
+    width: 300px;
     left: 0%;
     background: #333;
     height: 100%;

@@ -55,6 +55,16 @@ nav {
 	transition-duration: 300ms;
 	.nav-open {
 		transition: all 300ms ease-in-out;
+		i {
+			font-size: 200%;
+		}
+	}
+	ul {
+		display: block;
+		li {
+			font-size: 140%;
+			text-transform: uppercase;
+		}
 	}
 }
 .nav-closed {

@@ -69,6 +69,7 @@ const app = new Vue({
 		checkbox: false,
 		alert: false,
 		errors: [],
+		currentCategory: 1,
 		currentProducts: [],
 		cart: {
 			open: false,
@@ -79,10 +80,9 @@ const app = new Vue({
 			content: ">"
 		}
 	},
-
-	methods: {
+	computed: {
 		//sorts into categories
-		getCategories() {
+		categories() {
 			let categories = [];
 
 			this.items.forEach(item => {
@@ -98,6 +98,26 @@ const app = new Vue({
 			})
 			return categories;
 		},
+		categoryNames() {
+			return this.categories.map(category => category.name);
+		}
+	},
+
+	methods: {
+		findCategory(id) {
+			for(let category of this.categories) {
+				if(category.id === id) {
+					return category;
+				}
+			}
+			return null;
+		},
+		getProductsInCategory(id) {
+			if (this.categories.map(category => category.id).indexOf(id) < 0) {
+				throw new Error(`Category ${id} does not exist`);
+			}
+			return this.items.filter(item => item.category.id === id);
+		},
 		// adds item to cart
 		addItem(item) {
 			this.order.push(item);
@@ -112,13 +132,10 @@ const app = new Vue({
 		removeItem(item) {
 			console.log(this.order.length, item);
 		    if (item >= 0 && item < this.order.length) {
-
 		        this.order.splice(item, 1);
 		        // console.log('removed ' + item.name);
 		    } else {
-		        throw new Error('Item "' + item + '" does not exist.');
-				var message = 'Sorry something has gone wrong. Please empty the cart';
-				this.errors.push(message);
+		        // throw new Error(`Item ${item} does not exist.`);
 		    }
 		},
 		//empties all items from the cart

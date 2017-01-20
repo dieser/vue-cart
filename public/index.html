@@ -24,11 +24,9 @@
 			<transition name="slide-fade">
 				<nav v-show="nav.open === true" class="nav--left">
 					<div class="nav-open">
-						<i @click="closeNav()" >X</i>
-						<ul>
-							<li>category 1</li>
-							<li>category 2</li>
-							<li>category 3</li>
+						<i @click="closeNav()">X</i>
+						<ul class="categories">
+							<li @click="currentCategory = category.id" v-for="category in categories">{{ category.name }}</li>
 						</ul>
 					</div>
 				</nav>
@@ -43,26 +41,19 @@
 					</ul>
 				</div>
 			</nav> -->
-			<main class="grid--large content">
+			<main class="grid--large content products">
 				<h1>{{ title }}</h1>
-				<ul class="column--45 gutter-after box-shadow">
-					<h3>Food</h3>
-					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items" :key="item.id">
-						<img :src="item.img" alt="">
-						<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
-						<p>{{ item.description }}</p>
+				<ul class="column--55 gutter-after box-shadow">
+					<h3>{{ findCategory(currentCategory).name }}</h3>
+					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in getProductsInCategory(currentCategory)">
+						<img class="column--45" :src="item.img" alt="product image">
+						<div class="item__content column--45">
+							<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
+							<p>{{ item.description }}</p>
 
-						<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
-					</li>
-				</ul>
-				<ul class="column--45 gutter-after box-shadow">
-					<h3>Drinks</h3>
-					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in items">
-						<img :src="item.img" alt="product image">
-						<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
-						<p>{{ item.description }}</p>
+							<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
+						</div>
 
-						<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
 					</li>
 				</ul>
 			</main>
@@ -81,12 +72,12 @@
 								<div v-if="order.length === 0"class="cart-empty">
 										{{ cart.empty }}
 								</div>
-								<li class="box-shadow margin-bottom" v-for="item in order">
+								<li class="box-shadow margin-bottom" v-for="(item, index) in order">
 									<img :src="item.img" alt=" product image">
 									<h4>{{ item.name }}</h4>
 									<p>{{ item.description }}</p>
 									<p class="highlighted">${{ item.price }}</p>
-									<button @click="removeItem(item)" class="btn--cart" type="button" name="button">Remove Item</button>
+									<button @click="removeItem(index)" class="btn--cart" type="button" name="button">Remove Item</button>
 								</li>
 							</ul>
 							<button v-if="order.length > 0" class="btn--cart" @click="checkbox = !checkbox" type="button" name="button">EMPTY CART</button>

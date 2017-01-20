@@ -16,7 +16,19 @@
 
 		<script>
 			mocha.setup('bdd');
+			describe('Products', () => {
+				it('Should contain no items at the beginning of the application.', () => {
+					chai.assert.equal(app.currentProducts.length, 0);
+				});
+				describe('#getProductsInCategory', () => {
+					it('Should return an array of items that match the current category id', () => {
 
+						app.getProductsInCategory(1);
+						// not correct
+						chai.assert.equal(app.currentProducts.length, 0);
+					});
+				});
+			});
 			describe('Cart', () => {
 				it('Should contain no items at the beginning of the application.', () => {
 					chai.assert.equal(app.order.length, 0);

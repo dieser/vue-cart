@@ -13,9 +13,9 @@ ul {
 	li {
 		font-size: 120%;
 		padding: 20px;
-
+		vertical-align: top;
 		img {
-			display: block;
+			display: inline-block;;
 			margin: 0 auto;
 		}
 		h4,p,.highlighted {
@@ -36,6 +36,10 @@ ul {
 			font-size: 150%;
 			color: $htc;
 			font-weight: bold;
+		}
+		.item__content {
+			display: inline-block;
+			vertical-align: top;
 		}
 	}
 }

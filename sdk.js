@@ -1,7 +1,7 @@
 module.exports = {
 	bundles: {
 		'vendor.bundle.js': [
-			'./public/vendor/vue/dist/vue.min.js',
+			'./public/vendor/vue/dist/vue.js',
 			'./public/vendor/vue-resource/dist/vue-resource.min.js'
 		],
 		'vendor.bundle.css': [

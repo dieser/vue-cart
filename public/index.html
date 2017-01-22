@@ -43,7 +43,7 @@
 			</nav> -->
 			<main class="grid--large content products">
 				<h1>{{ title }}</h1>
-				<ul class="column--55 gutter-after box-shadow">
+				<ul v-if="categories.length > 0" class="column--55 gutter-after box-shadow">
 					<h3>{{ findCategory(currentCategory).name }}</h3>
 					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in getProductsInCategory(currentCategory)">
 						<img class="column--45" :src="item.img" alt="product image">

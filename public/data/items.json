@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"img": "http://lorempixel.com/250/200/food/",
+		"name": "item 1",
+		"description": "Pellentesque sit amet bibendum est, nec vehicula turpis.",
+		"price": 2,
+		"category": {
+			"id": 1,
+			"name": "food"
+		},
+		"available": true
+	},
+	{
+		"id": 2,
+		"img": "http://lorempixel.com/251/200/food/",
+		"name": "item 2",
+		"description": "Sed imperdiet velit sem, non feugiat orci volutpat sed. Donec egestas augue quis rhoncus tinunt.",
+		"price": 7,
+		"category": {
+			"id": 1,
+			"name": "food"
+		},
+		"available": true
+	},
+	{
+		"id": 3,
+		"img": "http://lorempixel.com/250/201/food/",
+		"name": "item 3",
+		"description": "Praesent tinunt tellus eget felis ultrices rutrum. Praesent blandit nibh faucibus lectus pulvinar egestas.",
+		"price": 3,
+		"category": {
+			"id": 2,
+			"name": "drink"
+		},
+		"available": true
+	},
+	{
+		"id": 4,
+		"img": "http://lorempixel.com/250/201/food/",
+		"name": "item 4",
+		"description": "eget felis ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.",
+		"price": 8,
+		"category": {
+			"id": 2,
+			"name": "drink"
+		},
+		"available": false
+	},
+	{
+		"id": 5,
+		"img": "http://lorempixel.com/250/201/food/",
+		"name": "item 5",
+		"description": "ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.",
+		"price": 12,
+		"category": {
+			"id": 2,
+			"name": "drink"
+		},
+		"available": true
+	}
+]

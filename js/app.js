@@ -1,70 +1,38 @@
+// const shop = {
+// 	install(Vue, options) {
+// 		Vue.test = 5;
+// 		Vue.prototype.$shop = {
+// 			items: [],
+// 			order: [],
+// 			currentCategory: [],
+// 			currentProducts: [],
+// 			addItem(item) {
+// 				this.order.push(item);
+// 				console.log('added ' + item.name);
+// 			},
+// 			fetchData() {
+// 				this.$http.get('/data/items.json').then(response => {
+// 					this.updateData(response.data);
+// 				});
+// 			},
+// 			updateData(data) {
+// 				this.items = data;
+// 			},
+// 			mounted() {
+// 				this.fetchData();
+// 				console.log("data fetched successfully");
+// 			}
+// 		};
+// 	}
+// };
+// Vue.use(shop);
+
 const app = new Vue({
 	el: '#app',
 
 	data: {
 		order: [],
-		items: [
-			{
-				id: 1,
-				img: 'http://lorempixel.com/250/200/food/',
-				name: 'item 1',
-				description: 'Pellentesque sit amet bibendum est, nec vehicula turpis.',
-				price: 2,
-				category: {
-					id: 1,
-					name: 'food'
-				},
-				available: true,
-			},
-			{
-				id: 2,
-				img: 'http://lorempixel.com/251/200/food/',
-				name: 'item 2',
-				description: 'Sed imperdiet velit sem, non feugiat orci volutpat sed. Donec egestas augue quis rhoncus tincidunt.',
-				price: 7,
-				category: {
-					id: 1,
-					name: 'food'
-				},
-				available: true
-			},
-			{
-				id: 3,
-				img: 'http://lorempixel.com/250/201/food/',
-				name: 'item 3',
-				description: 'Praesent tincidunt tellus eget felis ultrices rutrum. Praesent blandit nibh faucibus lectus pulvinar egestas.',
-				price: 3,
-				category: {
-					id: 2,
-					name: 'drink'
-				},
-				available: true
-			},
-			{
-				id: 4,
-				img: 'http://lorempixel.com/250/201/food/',
-				name: 'item 4',
-				description: 'eget felis ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.',
-				price: 8,
-				category: {
-					id: 2,
-					name: 'drink'
-				},
-				available: false
-			},
-			{
-				id: 5,
-				img: 'http://lorempixel.com/250/201/food/',
-				name: 'item 5',
-				description: 'ultrices rutrum. Praesent nibh faucibus lectus pulvinar egestas.',
-				price: 12,
-				category: {
-					id: 2,
-					name: 'drink'
-				},
-				available: true
-			}
-		],
+		items: [],
 		title: 'Order Here',
 		checkbox: false,
 		alert: false,
@@ -99,11 +67,20 @@ const app = new Vue({
 			return categories;
 		},
 		categoryNames() {
+			console.log(this.categories);
 			return this.categories.map(category => category.name);
 		}
 	},
 
 	methods: {
+		fetchData() {
+			this.$http.get( '/data/items.json').then(response => {
+				this.updateData(response.data);
+			});
+		},
+		updateData(data) {
+			this.items = data;
+		},
 		findCategory(id) {
 			for(let category of this.categories) {
 				if(category.id === id) {
@@ -125,10 +102,7 @@ const app = new Vue({
 		},
 
 		//removes item from cart
-		// removeItem(item) {
-		// 	this.order.splice(item, 1);
-		// 	console.log('removed ' + item.name);
-		// },
+
 		removeItem(item) {
 			console.log(this.order.length, item);
 		    if (item >= 0 && item < this.order.length) {
@@ -172,9 +146,8 @@ const app = new Vue({
 			}
 		}
 	},
-
 	mounted() {
-		// Initial logic here.
-		// ...
+		this.fetchData();
+		console.log("data fetched successfully");
 	}
 });

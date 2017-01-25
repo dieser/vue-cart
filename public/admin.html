@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>admin</title>
+</head>
+<body>
+	<h1>Admin page</h1>
+	<transition name="slide-fade">
+		<nav v-show="nav.open === true" class="nav--left">
+			<div class="nav-open">
+				<i @click="closeNav()">X</i>
+				<ul class="categories">
+					<li @click="currentCategory = category.id" v-for="category in categories">{{ category.name }}</li>
+				</ul>
+			</div>
+		</nav>
+	</transition>
+	<div @click="openNav()" class="nav-closed">
+		<p v-text="nav.content"></p>
+	</div>
+</body>
+</html>

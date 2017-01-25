@@ -1,31 +1,31 @@
-// const shop = {
-// 	install(Vue, options) {
-// 		Vue.test = 5;
-// 		Vue.prototype.$shop = {
-// 			items: [],
-// 			order: [],
-// 			currentCategory: [],
-// 			currentProducts: [],
-// 			addItem(item) {
-// 				this.order.push(item);
-// 				console.log('added ' + item.name);
-// 			},
-// 			fetchData() {
-// 				this.$http.get('/data/items.json').then(response => {
-// 					this.updateData(response.data);
-// 				});
-// 			},
-// 			updateData(data) {
-// 				this.items = data;
-// 			},
-// 			mounted() {
-// 				this.fetchData();
-// 				console.log("data fetched successfully");
-// 			}
-// 		};
-// 	}
-// };
-// Vue.use(shop);
+const shop = {
+	install(Vue, options) {
+		Vue.test = 5;
+		Vue.prototype.$shop = {
+			items: [],
+			order: [],
+			currentCategory: [],
+			currentProducts: [],
+			addItem(item) {
+				this.order.push(item);
+				console.log('added ' + item.name);
+			},
+			fetchData() {
+				Vue.http.get('/data/items.json').then(response => {
+					this.updateData(response.data);
+				});
+			},
+			updateData(data) {
+				this.items = data;
+			}
+			// mounted() {
+			// 	this.fetchData();
+			// 	console.log("data fetched successfully");
+			// }
+		};
+	}
+};
+Vue.use(shop);
 
 const app = new Vue({
 	el: '#app',
@@ -73,14 +73,17 @@ const app = new Vue({
 	},
 
 	methods: {
+		// Pulls data with get request (currently from local json file)
 		fetchData() {
-			this.$http.get( '/data/items.json').then(response => {
+			this.$http.get('/data/items.json').then(response => {
 				this.updateData(response.data);
 			});
 		},
+
 		updateData(data) {
 			this.items = data;
 		},
+		// finds list of available product categories
 		findCategory(id) {
 			for(let category of this.categories) {
 				if(category.id === id) {
@@ -89,6 +92,7 @@ const app = new Vue({
 			}
 			return null;
 		},
+		//gets products in specified category
 		getProductsInCategory(id) {
 			if (this.categories.map(category => category.id).indexOf(id) < 0) {
 				throw new Error(`Category ${id} does not exist`);
@@ -118,26 +122,29 @@ const app = new Vue({
 			this.checkbox = false;
 			console.log('emptied cart');
 		},
-		//functions for opening and closing cart dropdown from right side nav
+		// function for opening cart from right side nav
 		openCart() {
 			this.cart.open = true;
 			console.log('opened cart');
 		},
+		// function for closing cart from right side nav
 		closeCart() {
 			this.cart.open = false;
 			console.log('opened cart');
 		},
+		// opens main nav (left) and toggles content
 		openNav() {
-			// var content = document.querySelector('.content');
 			this.nav.open = true;
 			this.nav.content = "<";
 			console.log('nav opened');
 		},
+		//closes main nav (left) and toggles content
 		closeNav() {
 			this.nav.open = false;
 			this.nav.content = ">";
 			console.log('nav closed');
 		},
+		// wip to push errors to array for user notification
 		onError() {
 			if (this.errors !== []) {
 				alert(this.errors);
@@ -146,6 +153,7 @@ const app = new Vue({
 			}
 		}
 	},
+	// see http://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram for mounted
 	mounted() {
 		this.fetchData();
 		console.log("data fetched successfully");

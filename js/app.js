@@ -151,6 +151,16 @@ const app = new Vue({
 			} else {
 				console.log(okeh);
 			}
+		},
+		gen() {
+			let total = 19;
+			for (var i = 0; i < total; i++) {
+				if (i % 2 === 0 ) {
+					console.log('okeh', i);
+				} else {
+					console.log("not okeh", i);
+				}
+			}
 		}
 	},
 	// see http://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram for mounted

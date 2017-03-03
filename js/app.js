@@ -39,6 +39,7 @@ const app = new Vue({
 		errors: [],
 		currentCategory: 1,
 		currentProducts: [],
+		active : true,
 		cart: {
 			open: false,
 			empty: "You currently have no items in your cart"

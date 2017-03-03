@@ -14,14 +14,16 @@
 
 	<body>
 		<div id="app">
-			<header>
+			<!-- Removed unused side nav and top nav as tabs are now displayed in grid. -->
+			<!-- <header>
 				<nav>
 					<div class="grid">
 							<a href="#">:D</a>
 					</div>
 				</nav>
-			</header>
-			<transition name="slide-fade">
+			</header> -->
+
+			<!-- <transition name="slide-fade">
 				<nav v-show="nav.open === true" class="nav--left">
 					<div class="nav-open">
 						<i @click="closeNav()">X</i>
@@ -30,10 +32,10 @@
 						</ul>
 					</div>
 				</nav>
-			</transition>
-			<div @click="openNav()" class="nav-closed">
+			</transition> -->
+			<!-- <div @click="openNav()" class="nav-closed">
 				<p v-text="nav.content"></p>
-			</div>
+			</div> -->
 			<!-- <nav>
 				<div class="grid">
 					<ul>
@@ -42,54 +44,62 @@
 				</div>
 			</nav> -->
 			<main class="grid--large content products">
-				<h1>{{ title }}</h1>
-				<ul v-if="categories.length > 0" class="column--55 gutter-after box-shadow">
-					<h3>{{ findCategory(currentCategory).name }}</h3>
-					<li v-if="item.available" class="box-shadow margin-bottom" v-for="item in getProductsInCategory(currentCategory)">
-						<img class="column--45" :src="item.img" alt="product image">
-						<div class="item__content column--45">
-							<h4>{{ item.name }}</h4><p class="highlighted">${{ item.price }}</p>
-							<p>{{ item.description }}</p>
+				<hgroup class="category-tabs">
+					<h1>{{ title }}</h1>
+					<ul class="categories">
+						<li v-bind:class="{ 'menu--active' : active }" @click="currentCategory = category.id" v-for="category in categories">{{ category.name }}</li>
+					</ul>
+				</hgroup>
 
+				<div class="cart">
+
+					<div class="cart--closed" @click="openCart()">
+						<i>{{ order.length }}</i><img class="icon" src="/textures/cart.png" alt="">
+					</div>
+						<transition name="fade">
+							<div v-show="cart.open === true" class="cart__bg">
+								<div class="cart--open">
+									<button @click="closeCart()" type="button" name="button">X</button>
+
+									<ul class="">
+										<h3>Your Order</h3>
+										<div v-if="order.length === 0"class="cart-empty">
+												{{ cart.empty }}
+										</div>
+										<li class="box-shadow margin-bottom" v-for="(item, index) in order">
+											<img :src="item.img" alt="product image">
+											<h4>{{ item.name }}</h4>
+											<p>{{ item.description }}</p>
+											<p class="highlighted">${{ item.price }}</p>
+											<button @click="removeItem(index)" class="btn--cart" type="button" name="button">Remove Item</button>
+										</li>
+									</ul>
+									<button v-if="order.length > 0" class="btn--cart" @click="checkbox = !checkbox" type="button" name="button">EMPTY CART</button>
+
+									<modal @click-out="checkbox = !checkbox" :visible="checkbox">
+										<div class="warning">!</div>
+										<button @click="emptyCart()" class="btn--cart" type="button" name="button">Remove all items from cart?</button>
+									</modal>
+								</div>
+
+							</div>
+						</transition>
+
+				</div>
+
+				<ul v-if="categories.length > 0">
+					<li v-if="item.available" class="box-shadow margin-bottom column--50 gutter-after" v-for="item in getProductsInCategory(currentCategory)">
+						<img class="" :src="item.img" alt="product image">
+						<div class="item__content">
+							<h4>{{ item.name }}</h4>
+							<p class="fixed-desc">{{ item.description }}</p>
+							<p class="highlighted">${{ item.price }}</p>
 							<button @click="addItem(item)" class="btn--cart" type="button" name="button">ADD TO CART</button>
 						</div>
 
 					</li>
 				</ul>
 			</main>
-
-			<div class="cart">
-
-				<div class="cart--closed" @click="openCart()">
-					<h4>Cart</h4><i></i>
-				</div>
-					<transition name="fade">
-						<div v-show="cart.open === true" class="cart--open">
-							<button @click="closeCart()" type="button" name="button"> close cart</button>
-
-							<ul class="">
-								<h3>Cart</h3>
-								<div v-if="order.length === 0"class="cart-empty">
-										{{ cart.empty }}
-								</div>
-								<li class="box-shadow margin-bottom" v-for="(item, index) in order">
-									<img :src="item.img" alt=" product image">
-									<h4>{{ item.name }}</h4>
-									<p>{{ item.description }}</p>
-									<p class="highlighted">${{ item.price }}</p>
-									<button @click="removeItem(index)" class="btn--cart" type="button" name="button">Remove Item</button>
-								</li>
-							</ul>
-							<button v-if="order.length > 0" class="btn--cart" @click="checkbox = !checkbox" type="button" name="button">EMPTY CART</button>
-
-							<modal @click-out="checkbox = !checkbox" :visible="checkbox">
-								<div class="warning">!</div>
-								<button @click="emptyCart()" class="btn--cart" type="button" name="button">Remove all items from cart?</button>
-							</modal>
-						</div>
-					</transition>
-
-			</div>
 
 		</div>
 
